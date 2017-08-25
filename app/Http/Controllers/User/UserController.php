@@ -64,12 +64,17 @@ class UserController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param User $user
      * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+     * @internal param int $id
+*/
+    public function show(User $user)
     {
-        $user = User::findOrFail($id);
+        // PESHTR LA JYATY AMA LANAW KAWANAKA ($id) HABW
+        // EMA BAHOY AM ( ID )a WA ATWANYN KASAKA BDOZINAWA
+        // BALAM CHYTR PEWSYT BAMA NAKA CHWNKA LARAVEL XIY BOMAN AKA
+        //$user = User::findOrFail($id);
+
         return $this->showOne($user);
     }
 
@@ -87,13 +92,13 @@ class UserController extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param User $user
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $user = User::findOrFail($id);
 
         $rules = [
           'email' => 'email|unique:users,email,' . $user->email,
@@ -140,13 +145,12 @@ class UserController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param User $user
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::findOrFail($id);
-
         $user->delete();
 
         return $this->showOne($user);
