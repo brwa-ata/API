@@ -44,6 +44,22 @@ class User extends Authenticatable
         'verification_token',
     ];
 
+    /* MUTATOR FOR USER */
+    public function setNameAttribute($name)
+    {
+        $this->attributes['name'] = $name;
+    }
+    /* ACCESSOR*/
+    public function getNameAttribute($name)
+    {
+        return ucwords($name);  // hamw piteky saratay nawaka abe ba capital la aty wargrtnaway userakan
+    }
+    /* MUTATOR FOR EMAIL */
+    public function setEmailAttribute($email)
+    {
+        $this->attributes['email'] = strtolower($email);
+    }
+
     public function isAdmin()
     {
         return $this->admin == User::ADMIN_USER;
