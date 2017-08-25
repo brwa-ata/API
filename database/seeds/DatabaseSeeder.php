@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
         /* AM VARIABLEANA TANHA AW NRXANAY TYAYA KA AMANWE CHANMAN BO AW MODELA DRWST BKA
             WATA AMANWE 200 USER DRWST BKAYN WA HARAWAHA
          */
-        $userQuantity = 200;
+        $userQuantity = 1000;
         $categoryQuantity = 30;
         $productQuantity = 1000;
         $transactionQuantity = 1000;
