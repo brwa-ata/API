@@ -22,8 +22,11 @@ Route::resource('buyer.transaction' , 'Buyer\BuyerTransactionController' , [ 'on
 /*  buyerProduct Route  */
 Route::resource('buyer.product' , 'Buyer\BuyerProductController' , [ 'only'  => [ 'index']  ]);
 
-/*  buyerSellerRoute  */
+/*  buyerSeller Route  */
 Route::resource('buyer.seller' , 'Buyer\BuyerSellerController' , [ 'only'  => [ 'index']  ]);
+
+/*  buyerCategory Route  */
+Route::resource('buyer.category' , 'Buyer\BuyerCategoryController' , [ 'only'  => [ 'index']  ]);
 
 /*  seller Route  */
 Route::resource('sellers' , 'Seller\SellerController' , [ 'only'  => [ 'index' ,  'show']  ]);
