@@ -31,17 +31,22 @@ Route::resource('buyer.category' , 'Buyer\BuyerCategoryController' , [ 'only'  =
 /*  seller Route  */
 Route::resource('sellers' , 'Seller\SellerController' , [ 'only'  => [ 'index' ,  'show']  ]);
 
+
 /*  category Route  */
 Route::resource('categories' , 'Category\CategoryController' , [ 'except'  => [ 'create' ,  'edit']  ]);
 
 /*  categoryProduct Route  */
-Route::resource('category.product' , 'Category\CategoryProductController' , [ 'except'  => [ 'create' ,  'edit']  ]);
+Route::resource('category.product' , 'Category\CategoryProductController' ,[ 'only'  => [ 'index']  ]);
 
 /*  categorySeller Route  */
-Route::resource('category.seller' , 'Category\CategorySellerController' , [ 'except'  => [ 'create' ,  'edit']  ]);
+Route::resource('category.seller' , 'Category\CategorySellerController' , [ 'only'  => [ 'index']   ]);
 
 /*  categoryTransaction Route  */
-Route::resource('category.transaction' , 'Category\CategoryTransactionController' , [ 'except'  => [ 'create' ,  'edit']  ]);
+Route::resource('category.transaction' , 'Category\CategoryTransactionController' ,[ 'only'  => [ 'index']  ]);
+
+/*  categoryBuyer Route  */
+Route::resource('category.buyer' , 'Category\CategoryBuyerController' ,  [ 'only'  => [ 'index']  ]  );
+
 
 /*  user Route  */
 Route::resource('users' , 'User\UserController' , [ 'except'  => [ 'create' ,  'edit']  ]);
