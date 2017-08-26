@@ -28,5 +28,11 @@ Route::resource('users' , 'User\UserController' , [ 'except'  => [ 'create' ,  '
 /*  transaction Route  */
 Route::resource('transactions' , 'Transaction\TransactionController' , [ 'only'  => [ 'index' ,  'show']  ]);
 
+/*  transactionCategory Route  */
+Route::resource('transaction.category' , 'TransactionCategory\TransactionCategoryController' , [ 'only'  => [ 'index']  ]);
+
+/*  transactionCategory Route  */
+Route::resource('transaction.seller' , 'TransactionSeller\TransactionSellerController' , [ 'only'  => [ 'index']  ]);
+
 /*  product Route  */
 Route::resource('products' , 'Product\ProductController' , [ 'only'  => [ 'index' ,  'show']  ]);
