@@ -29,11 +29,16 @@ Route::resource('buyer.seller' , 'Buyer\BuyerSellerController' , [ 'only'  => [ 
 Route::resource('buyer.category' , 'Buyer\BuyerCategoryController' , [ 'only'  => [ 'index']  ]);
 
 
+
 /*  seller Route  */
 Route::resource('sellers' , 'Seller\SellerController' , [ 'only'  => [ 'index' ,  'show']  ]);
 
 /*  sellerTransaction Route  */
 Route::resource('seller.transaction' , 'Seller\SellerTransactionController' , [ 'only'  => [ 'index']  ]);
+
+/*  sellerCategory Route  */
+Route::resource('seller.category' , 'Seller\SellerCategoryController' , [ 'only'  => [ 'index']  ]);
+
 
 
 /*  category Route  */
