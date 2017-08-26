@@ -39,6 +39,9 @@ Route::resource('seller.transaction' , 'Seller\SellerTransactionController' , [ 
 /*  sellerCategory Route  */
 Route::resource('seller.category' , 'Seller\SellerCategoryController' , [ 'only'  => [ 'index']  ]);
 
+/*  sellerBuyer Route  */
+Route::resource('seller.buyer' , 'Seller\SellerBuyerController' , [ 'only'  => [ 'index']  ]);
+
 
 
 /*  category Route  */
