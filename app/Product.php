@@ -22,6 +22,8 @@ class Product extends Model
         'image',
         'seller_id',
     ];
+    protected $hidden = ['pivot']; // ama bo awaya ka la katy pshan danaway shtakan pivoyt table darnakawe
+
 
     /*  am methoda anjamakay true abe agar status available bw gar na false abe */
     public  function  isAvailable()

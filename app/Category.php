@@ -11,6 +11,7 @@ class Category extends Model
 
     protected $dates = ['deleted_at'];
     protected $fillable = ['name' , 'description'];
+    protected $hidden = ['pivot']; // ama bo awaya ka la katy pshan danaway shtakan pivoyt table darnakawe
 
     public function products()
     {
