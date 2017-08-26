@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
@@ -28,7 +29,7 @@ class Product extends Model
         return $this->status == Product::AVAILABLE_PRODUCT;
     }
 
-    public function sellers()
+    public function seller()
     {
         return $this->belongsTo('App\Seller');
     }
