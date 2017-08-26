@@ -19,6 +19,9 @@ Route::resource('buyers' , 'Buyer\BuyerController' , [ 'only'  => [ 'index' ,  '
 /*  buyer Route  */
 Route::resource('buyer.transaction' , 'Buyer\BuyerTransactionController' , [ 'only'  => [ 'index']  ]);
 
+/*  buyer Route  */
+Route::resource('buyer.product' , 'Buyer\BuyerProductController' , [ 'only'  => [ 'index']  ]);
+
 /*  seller Route  */
 Route::resource('sellers' , 'Seller\SellerController' , [ 'only'  => [ 'index' ,  'show']  ]);
 
