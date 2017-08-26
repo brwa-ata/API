@@ -34,6 +34,9 @@ Route::resource('sellers' , 'Seller\SellerController' , [ 'only'  => [ 'index' ,
 /*  category Route  */
 Route::resource('categories' , 'Category\CategoryController' , [ 'except'  => [ 'create' ,  'edit']  ]);
 
+/*  categoryProduct Route  */
+Route::resource('category.product' , 'Category\CategoryProductController' , [ 'except'  => [ 'create' ,  'edit']  ]);
+
 /*  user Route  */
 Route::resource('users' , 'User\UserController' , [ 'except'  => [ 'create' ,  'edit']  ]);
 
