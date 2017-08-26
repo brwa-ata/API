@@ -28,8 +28,12 @@ Route::resource('buyer.seller' , 'Buyer\BuyerSellerController' , [ 'only'  => [ 
 /*  buyerCategory Route  */
 Route::resource('buyer.category' , 'Buyer\BuyerCategoryController' , [ 'only'  => [ 'index']  ]);
 
+
 /*  seller Route  */
 Route::resource('sellers' , 'Seller\SellerController' , [ 'only'  => [ 'index' ,  'show']  ]);
+
+/*  sellerTransaction Route  */
+Route::resource('seller.transaction' , 'Seller\SellerTransactionController' , [ 'only'  => [ 'index']  ]);
 
 
 /*  category Route  */
