@@ -42,6 +42,9 @@ Route::resource('seller.category' , 'Seller\SellerCategoryController' , [ 'only'
 /*  sellerBuyer Route  */
 Route::resource('seller.buyer' , 'Seller\SellerBuyerController' , [ 'only'  => [ 'index']  ]);
 
+/*  sellerProduct Route  */
+Route::resource('seller.product' , 'Seller\SellerProductController' , [ 'except' => ['create' , 'show' , 'edit']  ]);
+
 
 
 /*  category Route  */
