@@ -16,11 +16,14 @@ use Illuminate\Http\Request;
 /*  buyer Route  */
 Route::resource('buyers' , 'Buyer\BuyerController' , [ 'only'  => [ 'index' ,  'show']  ]);
 
-/*  buyer Route  */
+/*  buyerTransaction Route  */
 Route::resource('buyer.transaction' , 'Buyer\BuyerTransactionController' , [ 'only'  => [ 'index']  ]);
 
-/*  buyer Route  */
+/*  buyerProduct Route  */
 Route::resource('buyer.product' , 'Buyer\BuyerProductController' , [ 'only'  => [ 'index']  ]);
+
+/*  buyerSellerRoute  */
+Route::resource('buyer.seller' , 'Buyer\BuyerSellerController' , [ 'only'  => [ 'index']  ]);
 
 /*  seller Route  */
 Route::resource('sellers' , 'Seller\SellerController' , [ 'only'  => [ 'index' ,  'show']  ]);
