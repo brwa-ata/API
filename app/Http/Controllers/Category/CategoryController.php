@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Category;
 
+use App\Category;
 use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,7 +16,9 @@ class CategoryController extends ApiController
      */
     public function index()
     {
-        //
+        $categories  = Category::all();
+
+        return $this->showAll($categories);
     }
 
     /**
@@ -36,7 +39,16 @@ class CategoryController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'name' => 'required',
+            'description' => 'required',
+        ];
+        $this->validate($request , $rules);
+
+        $newCategory = Category::create($request->all());
+
+        return $this->showOne($newCategory , 201);
+
     }
 
     /**
@@ -47,7 +59,9 @@ class CategoryController extends ApiController
      */
     public function show($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return $this->showOne($category);
+
     }
 
     /**
@@ -70,7 +84,20 @@ class CategoryController extends ApiController
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->fill($request->intersect([
+            'name',
+            'description'
+        ]));
+
+        if ($category->isClean())
+        {
+            return $this->errorResponse('You need to specify any defferent value to update' , 422);
+        }
+
+        $category->save();
+
+        return $this->showOne($category);
     }
 
     /**
@@ -81,6 +108,11 @@ class CategoryController extends ApiController
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        $category->delete();
+
+        return $this->showOne($category);
+
     }
 }
