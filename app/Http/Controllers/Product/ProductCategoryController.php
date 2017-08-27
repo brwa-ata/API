@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Product;
 
+use App\Category;
 use App\Http\Controllers\ApiController;
 use App\Product;
 use Illuminate\Http\Request;
@@ -48,6 +49,7 @@ class ProductCategoryController extends ApiController
         */
 
         //$product->categories()->attach([$category->id]);
+        //$product->categories()->sync([$category->id]);
         $product->categories()->syncWithoutDetaching([$category->id]);
 
         return $this->showAll($product->categories);
@@ -57,11 +59,25 @@ class ProductCategoryController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param $product_id
+     * @param $category_id
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy($product_id , $category_id)
     {
+        /*LAM DELETE KRDNAYA EMA DATAKA NASRYNAWA BALKW RELATIONY NEWAN AW DATAYA NAHELYN
+        BAM SHEWAYASH WAKW AWA WAYA KA AW DATAYA SRABETAWA BALAM HESHTAS LANAW TABLEKAMAN BWNY HAYA*/
+        $product = Product::findOrFail($product_id);
+        $category = Category::findOrFail($category_id);
+
+        if (!$product->categories()->find($category->id)){
+            return $this->errorResponse('The specified category is not a category of this prodoct' , 404);
+        }
+
+        $product->categories()->detach($category->id);
+
+        return $this->showAll($product->categories);
 
     }
 }
