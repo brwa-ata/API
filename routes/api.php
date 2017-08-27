@@ -76,6 +76,8 @@ Route::resource('transaction.category' , 'TransactionCategory\TransactionCategor
 /*  transactionCategory Route  */
 Route::resource('transaction.seller' , 'TransactionSeller\TransactionSellerController' , [ 'only'  => [ 'index']  ]);
 
+
+
 /*  product Route  */
 Route::resource('products' , 'Product\ProductController' , [ 'only'  => [ 'index' ,  'show']  ]);
 
@@ -84,3 +86,6 @@ Route::resource('product.transaction' , 'Product\ProductTransactionController' ,
 
 /*  productBuyer Route  */
 Route::resource('product.buyer' , 'Product\ProductBuyerController' , [ 'only'  => [ 'index' ,  'show']  ]);
+
+/*  productCategory Route  */
+Route::resource('product.category' , 'Product\ProductCategoryController' , [ 'except'  => [ 'create' ,  'edit']  ]);
