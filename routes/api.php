@@ -63,6 +63,7 @@ Route::resource('category.transaction' , 'Category\CategoryTransactionController
 Route::resource('category.buyer' , 'Category\CategoryBuyerController' ,  [ 'only'  => [ 'index']  ]  );
 
 
+
 /*  user Route  */
 Route::resource('users' , 'User\UserController' , [ 'except'  => [ 'create' ,  'edit']  ]);
 
@@ -77,3 +78,6 @@ Route::resource('transaction.seller' , 'TransactionSeller\TransactionSellerContr
 
 /*  product Route  */
 Route::resource('products' , 'Product\ProductController' , [ 'only'  => [ 'index' ,  'show']  ]);
+
+/*  productTransaction Route  */
+Route::resource('product.transaction' , 'Product\ProductTransactionController' , [ 'only'  => [ 'index' ,  'show']  ]);
