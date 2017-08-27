@@ -89,3 +89,6 @@ Route::resource('product.buyer' , 'Product\ProductBuyerController' , [ 'only'  =
 
 /*  productCategory Route  */
 Route::resource('product.category' , 'Product\ProductCategoryController' , [ 'except'  => [ 'create' ,  'edit']  ]);
+
+/*  productBuyerTransaction Route  */
+Route::resource('product.buyer.transaction' , 'Product\ProductBuyerTransactionController' , [ 'only'  => [ 'store']  ]);
