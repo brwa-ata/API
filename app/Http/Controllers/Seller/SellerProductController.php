@@ -8,6 +8,7 @@ use App\Seller;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class SellerProductController extends ApiController
 {
@@ -61,23 +62,92 @@ class SellerProductController extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param $seller_id
+     * @param $product_id
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $seller_id , $product_id)
     {
-        //
+
+        $seller = Seller::findOrFail($seller_id);
+        $product = Product::findOrFail($product_id);
+
+        $rules = [
+            'quantity' => 'integer|min:1',
+            'status' => 'in:' . Product::AVAILABLE_PRODUCT . ',' .Product::UNAVAILABLE_PRODUCT,
+            'image' => 'image'
+        ];
+
+        $this->validate($request , $rules);
+
+        $this->checkSeller($seller->id , $product->id);
+
+        $product->fill($request->intersect([
+            'name',
+            'description',
+            'quantity',
+        ]));
+
+        if ($request->has('status')) {
+            $product->status = $request->status;
+
+            //if the status for the product is available
+            if ($product->isAvailable() && $product->categories()->count() == 0 ) {
+                return $this->errorResponse('An active product must have at least one categpry' , 409);
+            }
+        }
+
+        // ama bo awaya gar kasaka hych shteky tazaay nakrdbw pewyst naka udate bkaynawa
+        if ($product->isClean()){
+            return $this->errorResponse('You need to specify a defferent value to update' , 422);
+        }
+
+        $product->save();
+
+        return $this->showOne($product);
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param $seller_id
+     * @param $product_id
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy($seller_id , $product_id)
     {
-        //
+
+        $seller = Seller::findOrFail($seller_id);
+        $product = Product::findOrFail($product_id);
+
+
+        $this->checkSeller($seller->id , $product->id);
+
+        $product->delete();
+
+        return $this->showOne($product);
+
     }
+
+
+    /**
+     * @param $seller_id
+     * @param $product_id
+     */
+    protected function checkSeller($seller_id , $product_id)
+    {
+        $seller = Seller::findOrFail($seller_id);
+        $product = Product::findOrFail($product_id);
+
+
+        if ($seller->id  !=  $product->seller_id) {
+            throw new HttpException(422, 'The specified seller is not the actual seller of the product');
+        }
+
+    }
+
 }
