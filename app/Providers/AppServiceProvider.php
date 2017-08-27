@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Mail\UserCreated;
+use App\Mail\UserMailChanged;
 use App\Product;
 use App\User;
 use Illuminate\Support\Facades\Mail;
@@ -34,6 +35,14 @@ class AppServiceProvider extends ServiceProvider
             // lanaw kawanay (   to()   ) gar tanha ( $user ) bnwsyn awa laravel xoy har  emailakay waragre
             // lanaw kawanay (   send()   ) objectek bo user mail drwst akayn w aw nrxay ayneryn achea contructory aw classawa ka lawe rwnkrdnaway zyatr nwsrawa
             Mail::to($user->email)->send(new UserCreated($user));
+        });
+
+        /*AMA BO AWAY GAR USER EMAILY TAZA KRDAWA DWBARA VERIFICATION BO EMAILA TAZAKAY BKRE*/
+        User::updated(function ($user){
+            /*SARATA PEWYSTA DLLNYA BYNAWA LAWAY KA EMAILAKAY GORDRAWA*/
+            if ($user->isDirty('email')){
+                Mail::to($user)->send(new UserMailChanged($user));
+            }
         });
 
     }
