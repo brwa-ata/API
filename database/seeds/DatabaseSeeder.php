@@ -26,6 +26,13 @@ class DatabaseSeeder extends Seeder
         Transaction::truncate();
         DB::table('category_product')->truncate(); /* LABAR AWAY AMA PIVOT TABLEA W MODELY NYIA BOYA BAM SHEWAYA ATWNYN PEY BGAYN */
 
+        /* AMA BO AWAYA KA (  create event  ) KA BO NARDNY EMAIL VERIFICATIONA , BWASTENYN LA KATY SEED KRDN CHWNKA ZHMARAYAKY ZOR DRWST AKAW KESHA DRWST ABE*/
+
+        User::flushEventListeners();
+        Category::flushEventListeners();
+        Product::flushEventListeners();
+        Transaction::flushEventListeners();
+
         /* AM VARIABLEANA TANHA AW NRXANAY TYAYA KA AMANWE CHANMAN BO AW MODELA DRWST BKA
             WATA AMANWE 200 USER DRWST BKAYN WA HARAWAHA
          */
