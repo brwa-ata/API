@@ -26,16 +26,6 @@ class UserController extends ApiController
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -72,22 +62,12 @@ class UserController extends ApiController
     {
         // PESHTR LA JYATY AMA LANAW KAWANAKA ($id) HABW
         // EMA BAHOY AM ( ID )a WA ATWANYN KASAKA BDOZINAWA
-        // BALAM CHYTR PEWSYT BAMA NAKA CHWNKA LARAVEL XIY BOMAN AKA
+        // BALAM CHYTR PEWSYT BAMA NAKA CHWNKA LARAVEL XOY BOMAN AKA
         //$user = User::findOrFail($id);
 
         return $this->showOne($user);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -155,4 +135,18 @@ class UserController extends ApiController
 
         return $this->showOne($user);
     }
+
+    public function verify($token)
+    {
+        $user = User::where('verification_token' , $token)->firstOrFail();
+
+        $user->verified = User::VERIFIED_USER;
+        $user->verification_token = null;
+
+        $user->save();
+
+        return $this->showMessage('The account has been verified successfully');
+
+    }
+
 }

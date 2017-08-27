@@ -66,6 +66,9 @@ Route::resource('category.buyer' , 'Category\CategoryBuyerController' ,  [ 'only
 
 /*  user Route  */
 Route::resource('users' , 'User\UserController' , [ 'except'  => [ 'create' ,  'edit']  ]);
+Route::name('verify')->get('users/verify/{token}' , 'User\UserController@verify');
+
+
 
 /*  transaction Route  */
 Route::resource('transactions' , 'Transaction\TransactionController' , [ 'only'  => [ 'index' ,  'show']  ]);
