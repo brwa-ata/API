@@ -34,6 +34,6 @@ class UserCreated extends Mailable
         // AM FUNCTIONA BA SHEWAYAKY AUTOMATICY RUN ABE WA EMA PEWYSTA LAGAL AMA AW USERA BNERYN KA HAMANA
         // WA BASHTRYN REGA BO NARDN AW REGAYAY SARAWAYA KA LAREGAY constructor USERAKA BNERYN
         // WA PEWYST NAKA compact YAN with BAKAR BENYN HAR XOR BA AUTOMATICY AW USERA ANERE
-        return $this->text('emails.welcome');
+        return $this->markdown('emails.welcome')->subject('Pleas confirm your account');
     }
 }
