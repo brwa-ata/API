@@ -3,7 +3,9 @@
 namespace App\Traits;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Validator;
 
 trait ApiResponser
 {
@@ -43,6 +45,7 @@ trait ApiResponser
         $transformer = $collection->first()->transformer;
         $collection = $this->filterData($collection, $transformer);
         $collection = $this->sortData($collection, $transformer);
+        $collection = $this->paginate($collection);
         $collection = $this->transformData($collection , $transformer);
 
         return $this->successResponse($collection , $code);
@@ -74,6 +77,12 @@ trait ApiResponser
     }
 
 
+
+    /**
+     * @param Collection $collection
+     * @param $transformer
+     * @return Collection|static
+     */
     public  function filterData(Collection $collection , $transformer)
     {
         foreach (request()->query() as $query => $value){
@@ -101,6 +110,38 @@ trait ApiResponser
             $collection = $collection->sortBy->{$attribute}; // am sortBy xoy la asla functiona bas lam versionay larvel atwanyn bam shewayash bakary benyn;
         }
         return $collection;
+    }
+
+
+
+    /**
+     * @param Collection $collection
+     * @return LengthAwarePaginator
+     */
+    public function paginate(Collection $collection)
+    {
+        $rules = [
+            'per_page' => 'integer|min:2|max:50'
+        ];
+        Validator::validate(request()->all() , $rules);
+
+        /* BAHOY AM class W functionay XWARWAAZANYN KA LA CH PAGEKAYN */
+        $page = LengthAwarePaginator::resolveCurrentPage();
+
+        $perPage = 15;
+        if (request()->has('per_page')){
+            $perPage = (int)request()->per_page;
+        }
+
+        $result = $collection->slice(($page -1 )* $perPage, $perPage)->values();
+
+        $paginated = new LengthAwarePaginator($result, $collection->count() , $perPage, $page, [
+            'path' => LengthAwarePaginator::resolveCurrentPage(),
+        ]);
+
+        $paginated->appends(request()->all());
+
+        return $paginated;
     }
 
 
