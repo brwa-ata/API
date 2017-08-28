@@ -27,4 +27,27 @@ class TransactionTransformer extends TransformerAbstract
 
         ];
     }
+
+
+
+    /**
+     * @param $index
+     * @return mixed|null
+     */
+    public  static function originalAttribute($index)
+    {
+        $attribute =  [
+            'identifier' =>'id',
+            'quantity' => 'quantity',
+            'buyer' =>'buyer_id' ,
+            'product' => 'product_id' ,
+            'creationDate' => 'created_at' ,
+            'lastChange' => 'updated_at' ,
+            'deleteDate' => 'deleted_at',
+        ];
+
+        return isset($attribute[$index]) ? $attribute[$index] : null;
+
+    }
+
 }
