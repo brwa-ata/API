@@ -10,4 +10,8 @@ class ApiController extends Controller
     // BAHOY AMAWA ESTA ATWANYN HAMW FUNCTIONAKANY NAW ApiResponser BAKAR BENYN
     // KA KAR ASANYMAN BO AKA
     use ApiResponser;
+
+    public function __construct()
+    {
+    }
 }
