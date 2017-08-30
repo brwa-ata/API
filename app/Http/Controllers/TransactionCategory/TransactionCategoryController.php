@@ -10,6 +10,15 @@ use App\Http\Controllers\Controller;
 class TransactionCategoryController extends ApiController
 {
     /**
+     * BuyerCategoryController constructor.
+     */
+    function __construct()
+    {
+        $this->middleware('client.credentials')->only(['index']);
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
      * @param $id

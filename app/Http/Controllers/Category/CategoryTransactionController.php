@@ -9,6 +9,16 @@ use App\Http\Controllers\Controller;
 
 class CategoryTransactionController extends ApiController
 {
+
+    /**
+     * BuyerCategoryController constructor.
+     */
+    function __construct()
+    {
+        parent::__construct();
+    }
+
+
     /**
      * Display a listing of the resource.
      *

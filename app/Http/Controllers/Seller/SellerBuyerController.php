@@ -9,6 +9,15 @@ use App\Http\Controllers\Controller;
 
 class SellerBuyerController extends ApiController
 {
+
+    /**
+     * BuyerCategoryController constructor.
+     */
+    function __construct()
+    {
+        parent::__construct();
+    }
+
     /**
      * Display a listing of the resource.
      *

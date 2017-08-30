@@ -10,6 +10,15 @@ use App\Http\Controllers\Controller;
 class TransactionController extends ApiController
 {
     /**
+     * BuyerCategoryController constructor.
+     */
+    function __construct()
+    {
+        parent::__construct();
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
